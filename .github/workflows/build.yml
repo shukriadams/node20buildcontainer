@@ -4,21 +4,7 @@ on:
     tags:
       - '*'
 jobs:
-    buildArm:
-        runs-on: self-hosted
-        steps:
-        # clean before building    
-        - name: cleanup
-          run: |
-            echo "Cleaning up previous run"
-            rm -rf "${{ github.workspace }}"
-        - uses: actions/checkout@v1
-        - name: builds and pushes the container
-          run:  sh ./build.sh --dockerpush --arc -arm
-          env:
-            DOCKER_PASS: ${{ secrets.DOCKER_PASS }}
-            DOCKER_USER: ${{ secrets.DOCKER_USER }}
-        
+      
 
     buildx86:
         runs-on: ubuntu-latest
